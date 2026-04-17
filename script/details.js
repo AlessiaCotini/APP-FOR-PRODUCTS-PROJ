@@ -27,15 +27,12 @@ const getDetails = function () {
                     <p class="card-text">${products.description}</p>
                     <p class="card-text">${products.brand}</p>
                     <p class="card-text">${products.price}€</p>
-                    <button class="btn-red" id="deleteBtn2">Delete</button>
+                    <a href="./homepage.html"><button class="btn-green">Go back</button></a>
                     </div>
                 </div>
             </div>
         </div>
     `;
-      document
-        .getElementById("deleteBtn2")
-        .addEventListener("click", deleteProduct());
     })
     .catch((err) => {
       console.log(err);
@@ -43,27 +40,3 @@ const getDetails = function () {
 };
 
 getDetails();
-
-function deleteProduct() {
-  if (!productId) return alert("No product");
-
-  fetch(apiLink + productId, {
-    method: "DELETE",
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWUxZGQwYTczOWY4NzAwMTU3YWIwODAiLCJpYXQiOjE3NzY0MDk4NjcsImV4cCI6MTc3NzYxOTQ2N30.vXu5VijLatM_t3Qk_PBQhYyez-FJEBaiAC6UUWuAk_Y",
-    },
-  })
-    .then((res) => {
-      if (res.ok) {
-        alert("Deleted!");
-        window.location.href = "homepage.html";
-      } else {
-        throw new Error("Delete failed");
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      alert("Err in delete!");
-    });
-}
