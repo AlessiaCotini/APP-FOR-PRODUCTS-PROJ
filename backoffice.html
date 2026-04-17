@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>backoffice page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css">
+  </head>
+    <body class="min-vh-100 d-flex flex-column text-light">
+    <header>
+    <nav class="navbar bg-dark px-3 py-2">
+    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+    <div class="d-flex flex-column">
+      <span class="navbar-brand m-0 p-0 text-info">WHO RUN THE WORLD</span>
+      <p class="text-white m-0" style="font-size: 0.7rem;">Share adventure.</p>
+    </div>
+    <div class="d-flex gap-2 flex-nowrap mt-2 mt-md-0">
+      <a href="./homepage.html"><button class="btn btn-orange flex-fill text-nowrap">Homepage</button></a>
+    </div>
+    </header>
+    <main class="flex-grow-1">
+    <div class="m-5 mb-2">
+    <h1 class="text-info w-25">Create products</h1>
+    <div class="input-group mb-2">
+    <span class="input-group-text w-25" required>Name of product</span>
+    <input type="text" aria-label="Name of product" class="form-control">
+    </div>
+    <div class="input-group mb-2">
+    <span class="input-group-text w-25">Description</span>
+    <textarea class="form-control" aria-label="Write here" required></textarea>
+    </div>
+    <div class="input-group mb-2">
+    <span class="input-group-text w-25" required>Brand's name</span>
+    <input type="text" aria-label="Write here" class="form-control">
+    </div>
+    <div class="input-group mb-2">
+    <span class="input-group-text w-25" required>Image Url</span>
+    <input type="text" aria-label="Write here" class="form-control">
+    </div>
+    <div class="input-group mb-2">
+    <span class="input-group-text w-25" required>Price</span>
+    <input type="text" aria-label="Write here" class="form-control">
+    </div>
+    <div class="d-flex justify-content-around">
+    <button class="btn btn-red flex-fill text-nowrap">Add</button>
+    <button class="btn btn-red flex-fill text-nowrap">Modify</button>
+    <button class="btn btn-red flex-fill text-nowrap">Delete</button>
+    </div>
+    </div>
+    </main>
+    <footer></footer>
+    <script src="./script/backoffice.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
