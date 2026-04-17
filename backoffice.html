@@ -48,11 +48,14 @@
     <input type="number" aria-label="Write here" class="form-control"  required id="price">
     </div>
     <div class="d-flex justify-content-around">
-    <button class="btn btn-red flex-fill text-nowrap" type="submit">Add</button>
-    <button class="btn btn-red flex-fill text-nowrap" type="button" id="modifyBtn">Modify</button>
-    <button class="btn btn-red flex-fill text-nowrap" type="button" id="deleteBtn">Delete</button>
+    <button class="btn btn-green flex-fill text-nowrap me-1" type="submit">Add</button>
+    <button class="btn btn-red flex-fill text-nowrap ms-1" type="button" id="deleteBtn">Delete</button>
     </div>
-</form>
+    <div class="d-flex flex-column align-items-center">
+    <button class="btn btn-yellow flex-fill text-nowrap w-100" type="button" id="modifyBtn">Modify Something</button>
+    <ul id="productsList" class="d-flex flex-column"></ul>
+    </div>
+    </form>
     </main>
     <footer></footer>
     <script src="./script/backoffice.js"></script>

@@ -20,14 +20,14 @@ const getProducts = function () {
         newCol.classList.add("col");
         newCol.innerHTML = `
           <div class="card h-100">
-            <img src="${product.imageUrl}" class="card-img-top" alt="immagine prodotto">
+            <img src="${product.imageUrl}" class="card-img-top img-fluid p-3" style="max-height:400px;"alt="immagine prodotto">
             <div class="card-body">
-              <h5 class="card-title">${product.name}</h5>
+              <h5 class="card-title text-center text-info text-capitalize">${product.name}</h5>
               <p class="card-text">${product.description}</p>
               <p class="card-text">${product.brand}</p>
               <p class="card-text">${product.price}€</p>
-              <a href="./details.html?id=${product._id}" class="btn btn-primary">
-                DETTAGLI
+              <a href="./details.html?id=${product._id}" class="btn btn-green">
+                Details
               </a>
             </div>
           </div>

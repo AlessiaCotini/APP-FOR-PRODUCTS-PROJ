@@ -10,6 +10,7 @@ const priceInput = document.getElementById("price");
 const deleteBtn = document.getElementById("deleteBtn");
 const modifyBtn = document.getElementById("modifyBtn");
 const title = document.querySelector("h1");
+let currentEditId = null;
 if (imageId) {
   title.innerText = "Modify Trip";
 
@@ -42,12 +43,10 @@ class Product {
 }
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
   if (imageId) {
     alert("Use Modify");
     return;
   }
-
   const newProduct = new Product(
     nameInput.value,
     descriptionInput.value,
@@ -65,22 +64,31 @@ form.addEventListener("submit", function (e) {
     },
   })
     .then((res) => {
-      if (res.ok) alert("Created!");
+      if (!res.ok) {
+        throw new Error("Error");
+      }
+      return res.json();
     })
-    .catch(console.log);
+    .then((createdProduct) => {
+      alert("Created!");
+      loadProducts();
+      form.reset();
+    });
 });
 modifyBtn.addEventListener("click", function () {
-  if (!imageId) return alert("Nothing to modify");
+  if (!currentEditId) {
+    return alert("Seleziona un prodotto dalla lista");
+  }
 
-  const updatedProduct = new Product(
-    nameInput.value,
-    descriptionInput.value,
-    imageUrlInput.value,
-    priceInput.value,
-    brandInput.value,
-  );
+  const updatedProduct = {
+    name: nameInput.value,
+    description: descriptionInput.value,
+    imageUrl: imageUrlInput.value,
+    price: priceInput.value,
+    brand: brandInput.value,
+  };
 
-  fetch(apiLink + imageId, {
+  fetch(apiLink + currentEditId, {
     method: "PUT",
     body: JSON.stringify(updatedProduct),
     headers: {
@@ -90,7 +98,14 @@ modifyBtn.addEventListener("click", function () {
     },
   })
     .then((res) => {
-      if (res.ok) alert("It went well!");
+      if (!res.ok) throw new Error("Errore modifica");
+      return res.json();
+    })
+    .then(() => {
+      alert("Prodotto modificato!");
+      currentEditId = null;
+      form.reset();
+      loadProducts();
     })
     .catch(console.log);
 });
@@ -109,3 +124,55 @@ deleteBtn.addEventListener("click", function () {
     })
     .catch(console.log);
 });
+const loadProducts = function () {
+  fetch(apiLink, {
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWUxZGQwYTczOWY4NzAwMTU3YWIwODAiLCJpYXQiOjE3NzY0MDk4NjcsImV4cCI6MTc3NzYxOTQ2N30.vXu5VijLatM_t3Qk_PBQhYyez-FJEBaiAC6UUWuAk_Y",
+    },
+  })
+    .then((res) => res.json())
+    .then((products) => {
+      const list = document.getElementById("productsList");
+      list.innerHTML = "";
+      products.forEach((product) => {
+        const li = document.createElement("li");
+        li.classList.add(
+          "d-flex",
+          "justify-content-between",
+          "mb-2",
+          "align-items-center",
+        );
+
+        li.innerHTML = `
+          <span>${product.name} - ${product.price}€</span>
+          <div class="d-flex gap-2 ms-2">
+            <button class="editBtn btn btn-yellow btn-sm">Edit</button>
+            <button class="deleteBtn btn btn-red btn-sm">Delete</button>
+          </div>
+        `;
+        li.querySelector(".editBtn").addEventListener("click", () => {
+          nameInput.value = product.name;
+          descriptionInput.value = product.description;
+          imageUrlInput.value = product.imageUrl;
+          brandInput.value = product.brand;
+          priceInput.value = product.price;
+
+          currentEditId = product._id;
+        });
+        li.querySelector(".deleteBtn").addEventListener("click", () => {
+          fetch(apiLink + product._id, {
+            method: "DELETE",
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWUxZGQwYTczOWY4NzAwMTU3YWIwODAiLCJpYXQiOjE3NzY0MDk4NjcsImV4cCI6MTc3NzYxOTQ2N30.vXu5VijLatM_t3Qk_PBQhYyez-FJEBaiAC6UUWuAk_Y",
+            },
+          }).then(() => loadProducts());
+        });
+
+        list.appendChild(li);
+      });
+    })
+    .catch(console.log);
+};
+loadProducts();
