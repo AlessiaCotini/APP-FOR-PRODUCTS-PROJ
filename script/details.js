@@ -21,13 +21,13 @@ const getDetails = function () {
       rowmytrip.innerHTML = `
         <div class="col-12 col-md-6">
             <div class="card">
-                <img src="${products.imageUrl}" class="card-img-top" alt="concert stock picture">
-                <div class="card-body">
+                <img src="${products.imageUrl}" class="card-img-top p-3" alt="concert stock picture">
+                <div class="card-body text-center">
                     <h5 class="card-title">${products.name}</h5>
                     <p class="card-text">${products.description}</p>
                     <p class="card-text">${products.brand}</p>
                     <p class="card-text">${products.price}€</p>
-                    <a href="./homepage.html"><button class="btn-green">Go back</button></a>
+                    <a href="./homepage.html"><button class="btn-green rounded-1 w-50 text-center">Go back</button></a>
                     </div>
                 </div>
             </div>
