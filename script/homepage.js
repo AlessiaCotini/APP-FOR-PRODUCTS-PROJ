@@ -19,7 +19,7 @@ const getProducts = function () {
         const newCol = document.createElement("div");
         newCol.classList.add("col");
         newCol.innerHTML = `
-          <div class="card h-100">
+          <div class="card h-100 d-flex flex-column align-content-between">
             <img src="${product.imageUrl}" class="card-img-top img-fluid p-3" style="max-height:400px;"alt="immagine prodotto">
             <div class="card-body">
               <h5 class="card-title text-center text-info text-capitalize">${product.name}</h5>

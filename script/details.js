@@ -21,7 +21,7 @@ const getDetails = function () {
       rowmytrip.innerHTML = `
         <div class="col-12 col-md-6">
             <div class="card">
-                <img src="${products.imageUrl}" class="card-img-top p-3" alt="concert stock picture">
+                <img src="${products.imageUrl}" class="card-img-top img-fluid p-3" alt="concert stock picture">
                 <div class="card-body text-center">
                     <h5 class="card-title">${products.name}</h5>
                     <p class="card-text">${products.description}</p>
